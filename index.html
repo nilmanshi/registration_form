@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        /* CSS styles for the registration form */
+        body {
+            background-image: url(Brickwall.jpg);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: white;
+            max-width: 400px;
+            margin: 25px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="about"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            float: right;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form id="registrationForm" onsubmit="validateForm(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            <span id="nameError" class="error"></span>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <span id="emailError" class="error"></span>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            <span id="passwordError" class="error"></span>
+
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="number" name="phoneNumber" id="phoneNumber" required>
+            <span class="phoneNumberError" id="error"></span>
+
+            <label for="gender">Gender:</label>
+            Male: <input type="radio" name="gender" value="male">
+            Female: <input type="radio" name="gender" value="female">
+            Other: <input type="radio" name="gender" value="other">
+
+            <label for="zipcode">Zip Code:</label>
+            <input type="number" name="zipcode" id="zipcode" required>
+
+            <label for="about">About:</label>
+            <textarea name="about" id="about" placeholder="Write about yourself..."></textarea>
+
+
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+    <script>
+        function validateForm(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get form inputs
+            var nameInput = document.getElementById("name");
+            var emailInput = document.getElementById("email");
+            var passwordInput = document.getElementById("password");
+           
+
+            // Get error elements
+            var nameError = document.getElementById("nameError");
+            var emailError = document.getElementById("emailError");
+            var passwordError = document.getElementById("passwordError");
+            
+
+            // Reset error messages
+            nameError.textContent = "";
+            emailError.textContent = "";
+            passwordError.textContent = "";
+            
+
+            // Validate inputs
+            var namePattern = /^[a-zA-Z ]+$/; // Alphabets and spaces only
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email pattern
+
+
+            if (!namePattern.test(nameInput.value)) {
+                nameError.textContent = "Please enter a valid name";
+                return false;
+            }
+
+            if (!emailPattern.test(emailInput.value)) {
+                emailError.textContent = "Please enter a valid email address";
+                return false;
+            }
+
+            if (passwordInput.value.length < 8) {
+                passwordError.textContent = "Password must be at least 8 characters long";
+                return false;
+            }
+
+            // Form is valid, submit it or perform further actions
+            document.getElementById("registrationForm").submit();
+        }
+    </script>
+</body>
+
+</html>
